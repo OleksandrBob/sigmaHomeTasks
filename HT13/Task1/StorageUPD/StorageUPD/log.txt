@@ -1,0 +1,8 @@
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
+deleted bad product - Name: "Milk", Weight: 420, Price: 29,9, Expiration date: 14
