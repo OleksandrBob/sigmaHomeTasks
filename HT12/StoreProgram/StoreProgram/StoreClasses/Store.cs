@@ -19,6 +19,7 @@ namespace StoreProgram
         }
 
 
+
         public static void InitStore(UserManager userManager, StorageManager storageManager, AdminManager adminManager)
         {
             mainStore = new Store(userManager, storageManager, adminManager);

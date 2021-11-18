@@ -65,8 +65,40 @@ namespace StoreProgram
 
         protected IUserManagerForUser myUserManager;
 
-        //private List<Basket> myBaskets = null;
+        protected readonly Basket[] myBaskets = new Basket[10];
         #endregion
+
+
+        protected User(string myInfo, IUserManagerForUser myUserManager)
+        {
+            if (myUserManager == null)
+            {
+                throw new Exception("Can't create 'ClassicUser' instance - object should belong to any UserManager");
+            }
+            this.myUserManager = myUserManager;
+
+            List<string> initialisationParameters = new List<string>(myInfo.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries));
+            try
+            {
+                this.Name = initialisationParameters[0];
+                this.Surname = initialisationParameters[1];
+                this.Email = initialisationParameters[2];
+                this.Adress = initialisationParameters[3];
+                this.CardDetails = initialisationParameters[4];
+                this.Login = initialisationParameters[5];
+                this.Password = initialisationParameters[6];
+                this.DateOfBirdth = DateTime.Parse(initialisationParameters[7]);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    myBaskets[i] = new Basket(this, i + 1);
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Can't create 'ClassicUser' instance - invalid initialisation parameters");
+            }
+        }
 
 
         public void DeleteMyAccount() 
@@ -80,5 +112,21 @@ namespace StoreProgram
         {
             return this.myUserManager.GetAccessToStorageManager().SearchProducts(searchingParameters);
         }
+
+        public List<IProduct> ShowBasketProducts(int basketNumber) 
+        {
+            return myBaskets[basketNumber].GetProducts();
+        }
+
+        public void AddProductToBasket(int basketNumber, IProduct product, int count)
+        {
+            myBaskets[basketNumber].AddProduct(product, count);
+        }
+
+        public void RemoveProductFromBasket(int basketNumber, IProduct product, int count)
+        {
+            myBaskets[basketNumber].RemoveProduct(product, count);
+        }
+
     }
 }

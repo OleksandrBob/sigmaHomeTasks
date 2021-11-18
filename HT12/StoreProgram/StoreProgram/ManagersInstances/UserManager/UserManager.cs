@@ -4,6 +4,8 @@ using System.Text;
 
 namespace StoreProgram
 {
+
+    
     enum UserType 
     {
         ClassicUser,
