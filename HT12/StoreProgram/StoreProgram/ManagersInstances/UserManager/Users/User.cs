@@ -128,5 +128,10 @@ namespace StoreProgram
             myBaskets[basketNumber].RemoveProduct(product, count);
         }
 
+        public void MakeOrder(int basketNumber)
+        {
+            this.myUserManager.GetAccessToOrderManager().AddOrder(myBaskets[basketNumber]);
+        }
+
     }
 }

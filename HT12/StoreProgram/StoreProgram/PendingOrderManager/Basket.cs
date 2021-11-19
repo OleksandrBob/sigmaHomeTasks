@@ -80,5 +80,26 @@ namespace StoreProgram
             return products;
         }
 
+        public PendingOrder BuyBasket() 
+        {
+            if (basketOrders.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                var user = this.basketOwner;
+                var orders = this.basketOrders;
+                ClearBasket();
+
+                return new PendingOrder(orders, user);
+            }
+        }
+
+        public void ClearBasket() 
+        {
+            this.basketOrders = new List<SingleOrder>();
+            this.RecalculateTotalPrice();
+        }
     }
 }

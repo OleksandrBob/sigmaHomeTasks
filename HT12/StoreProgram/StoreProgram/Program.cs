@@ -7,7 +7,7 @@ namespace StoreProgram
         static void Main(string[] args)
         {
             UserManager.InitUserManager();
-            Store.InitStore(UserManager.GetInstance(), new StorageManager(), new AdminManager());
+            Store.InitStore(UserManager.GetInstance(), new StorageManager(), new AdminManager(), PendingOrderManager.GetInstance());
 
             var store = Store.GetInstance();
             var userManager = UserManager.GetInstance();
@@ -24,10 +24,10 @@ namespace StoreProgram
             concreteUser.AddProductToBasket(1, sausageProd, 1);
 
             concreteUser.ShowBasketProducts(1);
-            concreteUser.RemoveProductFromBasket(1, milkProd, 2);
+            concreteUser.RemoveProductFromBasket(1, milkProd, 1);
 
 
-
+            concreteUser.MakeOrder(1);
             //concreteUser.SearchProducts();
         }
     }

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace StoreProgram
-{
-
-    
+{    
     enum UserType 
     {
         ClassicUser,
@@ -15,6 +13,8 @@ namespace StoreProgram
     interface IUserManagerForUser
     {
         ISearchByAllStoragesManager GetAccessToStorageManager();
+        IAddOrderToManager GetAccessToOrderManager();
+
         void DeleteUser(User userToRemove);
     }
 
@@ -54,6 +54,11 @@ namespace StoreProgram
             return myStore.storageManager;
         }
 
+        public IAddOrderToManager GetAccessToOrderManager() 
+        {
+            return this.myStore.pendingOrderManager;
+        }
+
         public void DeleteUser(User userToRemove) 
         {
             users.Remove(userToRemove);
@@ -67,9 +72,9 @@ namespace StoreProgram
                 {
                     users.Add(new ClassicUser(initParameters, this));
                 }
-                else if (true)
+                else if (typeToCreate == UserType.VIPUser)
                 {
-
+                    //...
                 }
             }
             catch (Exception ex) 
@@ -82,5 +87,7 @@ namespace StoreProgram
         {
             return users.Find((u) => (u.Login == login && u.Password == password));
         }
+
+
     }
 }
