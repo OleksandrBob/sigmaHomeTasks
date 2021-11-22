@@ -4,8 +4,12 @@ using System.Text;
 
 namespace StoreProgram
 {
-    class ClassicUser : User
+    class VIPUser : User
     {
+        public VIPUser(string myInfo, IUserManagerForUser myUserManager) : base(myInfo, myUserManager, UserType.VIPUser) { }
+
+        public VIPUser((string, IUserManagerForUser, UserType) paramsForReinit) : base(paramsForReinit) { }
+
         public override void ChangeMyInfo(string newInfo)
         {
             string tempName;
@@ -44,9 +48,5 @@ namespace StoreProgram
             this.Password = tempPassword;
             this.DateOfBirdth = tempDateOfBirdth;
         }
-
-        public ClassicUser((string, IUserManagerForUser, UserType) paramsForReinit) : base(paramsForReinit) { }
-
-        public ClassicUser(string myInfo, IUserManagerForUser myUserManager) : base(myInfo, myUserManager, UserType.ClassicUser) { }
     }
 }

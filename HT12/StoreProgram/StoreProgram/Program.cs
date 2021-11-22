@@ -7,12 +7,14 @@ namespace StoreProgram
         static void Main(string[] args)
         {
             UserManager.InitUserManager();
-            Store.InitStore(UserManager.GetInstance(), new StorageManager(), new AdminManager(), PendingOrderManager.GetInstance());
+            AdminManager.InitAdminManager();
+            Store.InitStore(UserManager.GetInstance(), new StorageManager(), AdminManager.GetInstance(), PendingOrderManager.GetInstance());
 
             var store = Store.GetInstance();
             var userManager = UserManager.GetInstance();
-            userManager.myStore = store;
-
+            userManager.SetMainStore(store);
+            var adminManager = AdminManager.GetInstance();
+            adminManager.SetMainStore(store);
 
             userManager.RegisterNewUser(UserType.ClassicUser, "Anthony|Stariv|rcbxd@gmail.com|Cypress|112331223|rcbxd|qwert321|03.07.2002");
             var concreteUser = userManager.SignIn("rcbxd","qwert321");
@@ -28,6 +30,10 @@ namespace StoreProgram
 
 
             concreteUser.MakeOrder(1);
+
+
+
+
             //concreteUser.SearchProducts();
         }
     }

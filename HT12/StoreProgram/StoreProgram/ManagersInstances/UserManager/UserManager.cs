@@ -12,17 +12,24 @@ namespace StoreProgram
 
     interface IUserManagerForUser
     {
-        ISearchByAllStoragesManager GetAccessToStorageManager();
-        IAddOrderToManager GetAccessToOrderManager();
+        IStorageManagerForUser GetAccessToStorageManager(User user);
+        IAddOrderToManager GetAccessToOrderManager(User user);
 
         void DeleteUser(User userToRemove);
     }
 
-    class UserManager: IUserManagerForUser
+    interface IUserManagerForAdministrator 
+    {
+        void ChangeStatus(User user, UserType newType);
+        List<User> WatchAllUsers();
+    }
+
+    class UserManager: IUserManagerForUser, IUserManagerForAdministrator
     {
         private static UserManager userManager = null;
-        public Store myStore = null;
+        private Store myStore = null;
         private List<User> users = null;
+        private IAbstractSchool schoolForStaffCreation = null;
 
         private UserManager() 
         {
@@ -34,6 +41,11 @@ namespace StoreProgram
             userManager = new UserManager();
         }
 
+        public void SetSchool(IAbstractSchool school) 
+        {
+            this.schoolForStaffCreation = school;
+        }
+
         public void SetMainStore(Store myStore) 
         {
             this.myStore = myStore;
@@ -41,21 +53,26 @@ namespace StoreProgram
 
         public static UserManager GetInstance() 
         {
-            if (userManager == null)
-            {
-                throw new Exception("Error in 'UserManager' class\nImpossible to get instance of the UserManager - 'userManager' is uninitialised.");
-            }
-
-            return userManager;
+            return userManager ?? throw new Exception("Error in 'UserManager' class\nImpossible to get instance of the UserManager - 'userManager' is uninitialised.");
         }
 
-        public ISearchByAllStoragesManager GetAccessToStorageManager()
+        public IStorageManagerForUser GetAccessToStorageManager(User user)
         {
+            if (!users.Contains(user))
+            {
+                return null;//user, that maid a request was deleted or uninitialised yet - can`t give an access
+            }
+
             return myStore.storageManager;
         }
 
-        public IAddOrderToManager GetAccessToOrderManager() 
+        public IAddOrderToManager GetAccessToOrderManager(User user) 
         {
+            if (!users.Contains(user))
+            {
+                return null;//user, that maid a request was deleted or uninitialised yet - can`t give an access
+            }
+
             return this.myStore.pendingOrderManager;
         }
 
@@ -64,7 +81,7 @@ namespace StoreProgram
             users.Remove(userToRemove);
         }
 
-        public void RegisterNewUser(UserType typeToCreate, string initParameters) 
+        public void RegisterNewUser(UserType typeToCreate, string initParameters) //EXTRA verifying needed
         {
             try
             {
@@ -74,7 +91,7 @@ namespace StoreProgram
                 }
                 else if (typeToCreate == UserType.VIPUser)
                 {
-                    //...
+                    users.Add(new VIPUser(initParameters, this));
                 }
             }
             catch (Exception ex) 
@@ -88,6 +105,46 @@ namespace StoreProgram
             return users.Find((u) => (u.Login == login && u.Password == password));
         }
 
+        public void ChangeStatus(User user, UserType newType) 
+        {
+            User newUserObject = null;
 
+            if (newType == UserType.ClassicUser)
+            {
+                try
+                {
+                    newUserObject = new ClassicUser(user.GetMyFullInfo());
+                }
+                catch (Exception)
+                {
+                    return;//Error ocured - reinitialisation failed
+                }
+            }
+            else if (newType == UserType.VIPUser)
+            {
+                try
+                {
+                    newUserObject = new VIPUser(user.GetMyFullInfo());
+                }
+                catch (Exception)
+                {
+                    return;//Error ocured - reinitialisation failed
+                }
+            }
+
+
+            if ((!this.users.Remove(user)) || newType == user.myType)
+            {
+                return;//No sense to update user status
+            }
+
+            this.users.Add(newUserObject);
+
+        }
+
+        public List<User> WatchAllUsers()
+        {
+            return this.users;
+        }
     }
 }

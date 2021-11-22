@@ -63,13 +63,15 @@ namespace StoreProgram
             protected set { dateOfBirdth = value; }
         }
 
+        public UserType myType { get; protected set; }
+
         protected IUserManagerForUser myUserManager;
 
         protected readonly Basket[] myBaskets = new Basket[10];
         #endregion
 
 
-        protected User(string myInfo, IUserManagerForUser myUserManager)
+        protected User(string myInfo, IUserManagerForUser myUserManager, UserType userType)
         {
             if (myUserManager == null)
             {
@@ -88,6 +90,7 @@ namespace StoreProgram
                 this.Login = initialisationParameters[5];
                 this.Password = initialisationParameters[6];
                 this.DateOfBirdth = DateTime.Parse(initialisationParameters[7]);
+                this.myType = userType;
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -100,20 +103,21 @@ namespace StoreProgram
             }
         }
 
+        protected User((string, IUserManagerForUser, UserType) paramsForReinit) : this(paramsForReinit.Item1, paramsForReinit.Item2, paramsForReinit.Item3) { }
 
-        public void DeleteMyAccount() 
+        public void DeleteMyAccount()
         {
             myUserManager.DeleteUser(this);
         }
 
         public abstract void ChangeMyInfo(string newInfo);
 
-        public List<IProduct> SearchProducts(string searchingParameters) 
+        public List<IProduct> SearchProducts(string searchingParameters)
         {
-            return this.myUserManager.GetAccessToStorageManager().SearchProducts(searchingParameters);
+            return this.myUserManager.GetAccessToStorageManager(this)?.SearchProducts(searchingParameters);
         }
 
-        public List<IProduct> ShowBasketProducts(int basketNumber) 
+        public List<IProduct> ShowBasketProducts(int basketNumber)
         {
             return myBaskets[basketNumber].GetProducts();
         }
@@ -130,7 +134,16 @@ namespace StoreProgram
 
         public void MakeOrder(int basketNumber)
         {
-            this.myUserManager.GetAccessToOrderManager().AddOrder(myBaskets[basketNumber]);
+            this.myUserManager.GetAccessToOrderManager(this)?.AddOrder(myBaskets[basketNumber]);
+        }
+
+        public (string, IUserManagerForUser, UserType) GetMyFullInfo() 
+        {
+            return ($"{Name}|{Surname}|{Email}|" +
+                    $"{Adress}|{CardDetails}|{Login}|" +
+                    $"{Password}|{DateOfBirdth}",
+                    this.myUserManager,
+                    this.myType);
         }
 
     }
