@@ -8,7 +8,8 @@ namespace StoreProgram
         {
             UserManager.InitUserManager();
             AdminManager.InitAdminManager();
-            Store.InitStore(UserManager.GetInstance(), new StorageManager(), AdminManager.GetInstance(), PendingOrderManager.GetInstance());
+
+            Store.InitStore(UserManager.GetInstance(), StorageManager.GetInstance(), AdminManager.GetInstance(), PendingOrderManager.GetInstance()); ;
 
             var store = Store.GetInstance();
             var userManager = UserManager.GetInstance();
@@ -18,7 +19,7 @@ namespace StoreProgram
 
             userManager.RegisterNewUser(UserType.ClassicUser, "Anthony|Stariv|rcbxd@gmail.com|Cypress|112331223|rcbxd|qwert321|03.07.2002");
             var concreteUser = userManager.SignIn("rcbxd","qwert321");
-            concreteUser.DeleteMyAccount();
+            //concreteUser.DeleteMyAccount();
 
             var milkProd = new Product("Milk", 440, 20, 14, DateTime.UtcNow);
             var sausageProd = new Product("Saussage", 800, 90, 20, DateTime.UtcNow);
@@ -30,11 +31,23 @@ namespace StoreProgram
 
 
             concreteUser.MakeOrder(1);
+            adminManager.ManagmentSchool = new LvivManagementSchool();
+            adminManager.RegisterNewAdministrator("Mike", "Smith", "ttrrtt", "swalddnm");
+            var concreteAdmin = adminManager.SingInAdministrator("Smith", "ttrrtt");
+
+            concreteAdmin.ConnectStorage(new LvivStorage());
+            var storages = concreteAdmin.WatchAllStorages();
+            storages[0].AddProductToStorage(milkProd);
 
 
+            concreteUser.SearchProducts("Milk");
 
 
-            //concreteUser.SearchProducts();
+            adminManager.RegisterNewModerator("Tom", "Orwell", "skrrtt", "swalddnm");
+            var concreteModerator = adminManager.SingInModerator("Orwell", "skrrtt");
+
+            concreteModerator.WatchOrders(concreteModerator);
+            concreteModerator.SetDiscountPolicy(UserType.VIPUser,(float)2.2);
         }
     }
 }

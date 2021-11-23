@@ -81,7 +81,7 @@ namespace StoreProgram
             users.Remove(userToRemove);
         }
 
-        public void RegisterNewUser(UserType typeToCreate, string initParameters) //EXTRA verifying needed
+        public void RegisterNewUser(UserType typeToCreate, string initParameters) 
         {
             try
             {
@@ -96,7 +96,7 @@ namespace StoreProgram
             }
             catch (Exception ex) 
             {
-                throw new Exception("User magager didn't create a new user - " + ex.Message);
+                throw new Exception("User manager didn't create a new user - " + ex.Message);
             }
         }
 

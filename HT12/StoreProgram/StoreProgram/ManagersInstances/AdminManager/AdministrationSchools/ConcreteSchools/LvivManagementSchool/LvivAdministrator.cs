@@ -20,6 +20,16 @@ namespace StoreProgram
             this.myAdminManager.GetAccessToUserManager().ChangeStatus(user, newUserType);
         }
 
+        public override void ConnectStorage(AbstractStorage storageToConnect)
+        {
+            this.myAdminManager.GetAccessToStorageManager().ConnectStorage(storageToConnect);
+        }
+
+        public override void RemoveStorage(AbstractStorage storageToRemove)
+        {
+            this.myAdminManager.GetAccessToStorageManager().RemoveSorage(storageToRemove);
+        }
+
         public override List<IStorageForAdministrator> WatchAllStorages()
         {
             return this.myAdminManager.GetAccessToStorageManager().WatchAllStorages();

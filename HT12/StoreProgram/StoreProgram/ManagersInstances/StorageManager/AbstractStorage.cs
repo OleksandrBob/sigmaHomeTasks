@@ -29,5 +29,10 @@ namespace StoreProgram
         {
             return products;
         }
+
+        public List<IProduct> SearchForProducts(string SearchingParameter) 
+        {
+            return products.FindAll((prod) => (prod.Name == SearchingParameter));
+        }
     }
 }
