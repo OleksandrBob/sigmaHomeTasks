@@ -1,0 +1,13 @@
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\bin\Debug\netcoreapp3.1\StoreProgram.exe
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\bin\Debug\netcoreapp3.1\StoreProgram.deps.json
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\bin\Debug\netcoreapp3.1\StoreProgram.runtimeconfig.json
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\bin\Debug\netcoreapp3.1\StoreProgram.runtimeconfig.dev.json
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\bin\Debug\netcoreapp3.1\StoreProgram.dll
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\bin\Debug\netcoreapp3.1\StoreProgram.pdb
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.csprojAssemblyReference.cache
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.AssemblyInfoInputs.cache
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.AssemblyInfo.cs
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.csproj.CoreCompileInputs.cache
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.dll
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.pdb
+F:\my_study\sigma\p12\StoreProgram\StoreProgram\obj\Debug\netcoreapp3.1\StoreProgram.genruntimeconfig.cache
