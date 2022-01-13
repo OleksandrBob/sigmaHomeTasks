@@ -1,0 +1,16 @@
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\SortingClass.exe
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\SortingClass.deps.json
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\SortingClass.runtimeconfig.json
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\SortingClass.runtimeconfig.dev.json
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\SortingClass.dll
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\ref\SortingClass.dll
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\bin\Debug\net5.0\SortingClass.pdb
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.csproj.AssemblyReference.cache
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.GeneratedMSBuildEditorConfig.editorconfig
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.AssemblyInfoInputs.cache
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.AssemblyInfo.cs
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.csproj.CoreCompileInputs.cache
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.dll
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\ref\SortingClass.dll
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.pdb
+F:\my_study\sigma\sortingTask\SortingClass\SortingClass\obj\Debug\net5.0\SortingClass.genruntimeconfig.cache
